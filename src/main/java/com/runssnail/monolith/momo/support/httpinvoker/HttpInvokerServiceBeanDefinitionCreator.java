@@ -6,11 +6,10 @@ import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
 
 import com.runssnail.monolith.momo.support.AbstractServiceBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.DefaultServiceMetadata;
-import com.runssnail.monolith.momo.support.ServiceBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.ServiceMetadata;
 
 /**
- * xfire 客户端BeanDefinition创建工厂
+ * http invoker 客户端BeanDefinition创建工厂
  * 
  * @author zhengwei
  */
@@ -38,7 +37,7 @@ public class HttpInvokerServiceBeanDefinitionCreator extends AbstractServiceBean
         return holder;
     }
 
-    public static ServiceBeanDefinitionCreator getInstance() {
+    public static HttpInvokerServiceBeanDefinitionCreator getInstance() {
         return INSTANCE;
     }
 

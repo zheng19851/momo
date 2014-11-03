@@ -36,6 +36,7 @@
 			<xsd:attribute name="port" type="xsd:string" use="optional" default="8080" />
 			<xsd:attribute name="contextPath" type="xsd:string" use="optional" default="/" />
 			<xsd:attribute name="readTimeout" type="xsd:string" use="optional" default="5000" />
+			<xsd:attribute name="queryString" type="xsd:string" use="optional" />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -67,7 +68,7 @@
 				</xsd:simpleType>
 			</xsd:attribute>
 			<xsd:attribute name="handlerMappingOrder" type="xsd:string" use="optional" default="10" />
-			
+			<xsd:attribute name="queryString" type="xsd:string" use="optional" />
 			
 		</xsd:complexType>
 	</xsd:element>

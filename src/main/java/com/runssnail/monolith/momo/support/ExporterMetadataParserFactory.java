@@ -1,6 +1,7 @@
 package com.runssnail.monolith.momo.support;
 
 import com.runssnail.monolith.momo.support.hessian.HessianExporterMetadataParser;
+import com.runssnail.monolith.momo.support.xfire.XfireExporterMetadataParser;
 
 /**
  * ExporterMetadataParser 简单创建工厂
@@ -13,8 +14,10 @@ public class ExporterMetadataParserFactory {
         ExporterMetadataParser parser = null;
         if (EnumProtocol.isHessian(protocol)) {
             parser = HessianExporterMetadataParser.getInstance();
-        } else if (EnumProtocol.isXfire(protocol) || EnumProtocol.isHttpInvoker(protocol)) {
+        } else if (EnumProtocol.isHttpInvoker(protocol)) {
             parser = DefaultExporterMetadataParser.getInstance();
+        } else if (EnumProtocol.isXfire(protocol)) {
+            parser = XfireExporterMetadataParser.getInstance();
         } else {
             throw new RuntimeException("can not find 'ExporterMetadataParser', protocol=" + protocol);
         }

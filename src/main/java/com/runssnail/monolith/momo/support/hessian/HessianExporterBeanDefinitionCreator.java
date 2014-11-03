@@ -7,7 +7,6 @@ import org.springframework.remoting.caucho.HessianServiceExporter;
 import org.springframework.util.StringUtils;
 
 import com.runssnail.monolith.momo.support.AbstractExporterBeanDefinitionCreator;
-import com.runssnail.monolith.momo.support.ExporterBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.ExporterMetadata;
 
 /**
@@ -37,7 +36,7 @@ public class HessianExporterBeanDefinitionCreator extends AbstractExporterBeanDe
         return holder;
     }
 
-    public static ExporterBeanDefinitionCreator getInstance() {
+    public static HessianExporterBeanDefinitionCreator getInstance() {
         return INSTANCE;
     }
 

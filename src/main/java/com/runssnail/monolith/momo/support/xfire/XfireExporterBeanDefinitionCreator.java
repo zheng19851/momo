@@ -7,7 +7,6 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.util.StringUtils;
 
 import com.runssnail.monolith.momo.support.AbstractExporterBeanDefinitionCreator;
-import com.runssnail.monolith.momo.support.ExporterBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.ExporterMetadata;
 
 /**
@@ -38,7 +37,7 @@ public class XfireExporterBeanDefinitionCreator extends AbstractExporterBeanDefi
         return holder;
     }
 
-    public static ExporterBeanDefinitionCreator getInstance() {
+    public static XfireExporterBeanDefinitionCreator getInstance() {
         return INSTANCE;
     }
 

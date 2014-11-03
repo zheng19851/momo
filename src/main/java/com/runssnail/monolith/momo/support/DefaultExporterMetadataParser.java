@@ -36,8 +36,11 @@ public class DefaultExporterMetadataParser extends AbstractExporterMetadataParse
         String name = element.getAttribute("name");
 
         if (!StringUtils.hasText(serviceName)) {
-
-            serviceName = buildServiceName(name, protocol, version, serviceInterface);
+            String queryString = element.getAttribute("queryString");
+            if (!StringUtils.hasText(queryString)) {
+                queryString = getDefaultQueryString();
+            }
+            serviceName = buildServiceName(protocol, name, serviceInterface, version, queryString);
         }
 
         DefaultExporterMetadata metadata = createExporterMetadata();
@@ -51,6 +54,15 @@ public class DefaultExporterMetadataParser extends AbstractExporterMetadataParse
         metadata.setName(name);
 
         return metadata;
+    }
+
+    /**
+     * ²éÑ¯´®£¬Ä¬ÈÏÎª¿Õ
+     * 
+     * @return
+     */
+    protected String getDefaultQueryString() {
+        return null;
     }
 
     protected DefaultExporterMetadata createExporterMetadata() {

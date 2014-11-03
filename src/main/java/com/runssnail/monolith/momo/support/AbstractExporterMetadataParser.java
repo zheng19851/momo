@@ -3,6 +3,7 @@ package com.runssnail.monolith.momo.support;
 import java.util.List;
 
 import org.springframework.beans.factory.xml.ParserContext;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 public abstract class AbstractExporterMetadataParser extends MetadataParser implements ExporterMetadataParser {
@@ -12,8 +13,15 @@ public abstract class AbstractExporterMetadataParser extends MetadataParser impl
     protected String getServiceName(ParserContext parserContext, List<Element> childElts) {
         Element serviceNameEle = getServiceNameEle(parserContext, childElts);
         if (serviceNameEle != null) {
-            String serviceUrl = serviceNameEle.getAttribute("value");
-            return serviceUrl;
+            String serviceName = serviceNameEle.getAttribute("value");
+            if (!StringUtils.hasText(serviceName)) {
+                throw new RuntimeException("the serviceName value must be setting.");
+            }
+
+            if (!serviceName.startsWith("/")) {
+                serviceName = "/" + serviceName;
+            }
+            return serviceName;
         }
         return null;
     }

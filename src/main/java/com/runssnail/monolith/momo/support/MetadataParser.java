@@ -12,17 +12,32 @@ public abstract class MetadataParser {
     private static final String DEFAULT_SERVICE_NAME_SUFFIX = ".htm";
 
     /**
-     * 生成服务名称
+     * 生成服务名称, /remoting/$protocol/$serviceName/$version.htm
      * 
-     * @param name 服务名称
      * @param protocol 协议, 默认hessian
-     * @param version 版本, 默认1.0
+     * @param name 服务名称
      * @param serviceInterface 服务接口
+     * @param version 版本, 默认1.0
      * @return
      */
-    protected String buildServiceName(String name, String protocol, String version, String serviceInterface) {
+    protected String buildServiceName(String protocol, String name, String serviceInterface, String version) {
+        return this.buildServiceName(protocol, name, serviceInterface, version, null);
+    }
 
-        StringBuilder sb = new StringBuilder(DEFAULT_SERVICE_NAME_PREFIX + protocol + "/" + version + "/");
+    /**
+     * 生成服务名称, 格式：/remoting/$protocol/$serviceName/$version.htm?$queryString
+     * 
+     * @param protocol 协议, 默认hessian
+     * @param name 服务名称
+     * @param serviceInterface 服务接口
+     * @param version 版本, 默认1.0
+     * @param queryString 查询参数
+     * @return
+     */
+    protected String buildServiceName(String protocol, String name, String serviceInterface, String version,
+                                      String queryString) {
+
+        StringBuilder sb = new StringBuilder(DEFAULT_SERVICE_NAME_PREFIX + protocol + "/");
         if (StringUtils.hasText(name)) {
             sb.append(name);
         } else {
@@ -31,11 +46,17 @@ public abstract class MetadataParser {
             sb.append(serviceInterface);
         }
 
-        String serviceName = sb.toString();
+        // version = version.replaceAll("\\.", "/");
 
-        if (!serviceName.endsWith(DEFAULT_SERVICE_NAME_SUFFIX)) {
-            serviceName = serviceName + DEFAULT_SERVICE_NAME_SUFFIX;
+        sb.append("/").append(version);
+
+        sb.append(DEFAULT_SERVICE_NAME_SUFFIX);
+
+        if (StringUtils.hasText(queryString)) {
+            sb.append("?").append(queryString);
         }
+
+        String serviceName = sb.toString();
 
         if (log.isDebugEnabled()) {
             log.debug("build service name success, serviceName=" + serviceName);

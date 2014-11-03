@@ -5,7 +5,6 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 
 import com.runssnail.monolith.momo.support.AbstractServiceBeanDefinitionCreator;
-import com.runssnail.monolith.momo.support.ServiceBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.ServiceMetadata;
 
 /**
@@ -37,7 +36,7 @@ public class HessianServiceBeanDefinitionCreator extends AbstractServiceBeanDefi
         return holder;
     }
 
-    public static ServiceBeanDefinitionCreator getInstance() {
+    public static HessianServiceBeanDefinitionCreator getInstance() {
         return INSTANCE;
     }
 

@@ -2,7 +2,6 @@ package com.runssnail.monolith.momo.support.hessian;
 
 import com.runssnail.monolith.momo.support.DefaultExporterMetadata;
 import com.runssnail.monolith.momo.support.DefaultExporterMetadataParser;
-import com.runssnail.monolith.momo.support.ExporterMetadataParser;
 
 /**
  * hessian exporter 元数据解析器
@@ -18,7 +17,7 @@ public class HessianExporterMetadataParser extends DefaultExporterMetadataParser
         return new HessianExporterMetadata();
     }
 
-    public static ExporterMetadataParser getInstance() {
+    public static HessianExporterMetadataParser getInstance() {
         return INSTANCE;
     }
 

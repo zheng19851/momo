@@ -7,11 +7,10 @@ import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.util.StringUtils;
 
 import com.runssnail.monolith.momo.support.AbstractExporterBeanDefinitionCreator;
-import com.runssnail.monolith.momo.support.ExporterBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.ExporterMetadata;
 
 /**
- * xfire
+ * http invoker
  * 
  * @author zhengwei
  */
@@ -36,7 +35,7 @@ public class HttpInvokerExporterBeanDefinitionCreator extends AbstractExporterBe
         return holder;
     }
 
-    public static ExporterBeanDefinitionCreator getInstance() {
+    public static HttpInvokerExporterBeanDefinitionCreator getInstance() {
         return INSTANCE;
     }
 

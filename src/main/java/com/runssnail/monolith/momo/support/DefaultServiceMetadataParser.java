@@ -47,7 +47,12 @@ public class DefaultServiceMetadataParser extends AbstractServiceMetadataParser 
 
         String name = element.getAttribute("name");
 
-        String serviceName = buildServiceName(name, protocol, version, serviceInterface);
+        String queryString = element.getAttribute("queryString");
+        if (!StringUtils.hasText(queryString)) {
+            queryString = getDefaultQueryString();
+        }
+
+        String serviceName = buildServiceName(protocol, name, serviceInterface, version, queryString);
 
         if (!StringUtils.hasText(serviceUrl)) {
             serviceUrl = buildServiceUrl(host, port, contextPath, serviceName);
@@ -67,6 +72,10 @@ public class DefaultServiceMetadataParser extends AbstractServiceMetadataParser 
         metadata.setVersion(version);
 
         return metadata;
+    }
+
+    protected String getDefaultQueryString() {
+        return null;
     }
 
     protected DefaultServiceMetadata createServiceMetadata() {
@@ -94,7 +103,7 @@ public class DefaultServiceMetadataParser extends AbstractServiceMetadataParser 
         return null;
     }
 
-    private String buildServiceUrl(String host, String port, String contextPath, String serviceName) {
+    protected String buildServiceUrl(String host, String port, String contextPath, String serviceName) {
 
         StringBuilder sb = new StringBuilder(HTTP_PROTOCOL);
         sb.append(host).append(":").append(port);

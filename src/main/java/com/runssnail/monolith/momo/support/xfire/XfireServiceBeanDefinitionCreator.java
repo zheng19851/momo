@@ -6,7 +6,6 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 
 import com.runssnail.monolith.momo.support.AbstractServiceBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.DefaultServiceMetadata;
-import com.runssnail.monolith.momo.support.ServiceBeanDefinitionCreator;
 import com.runssnail.monolith.momo.support.ServiceMetadata;
 
 /**
@@ -38,7 +37,7 @@ public class XfireServiceBeanDefinitionCreator extends AbstractServiceBeanDefini
         return holder;
     }
 
-    public static ServiceBeanDefinitionCreator getInstance() {
+    public static XfireServiceBeanDefinitionCreator getInstance() {
         return INSTANCE;
     }
 
